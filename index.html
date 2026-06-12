@@ -182,22 +182,19 @@ footer{
 </div>
 
 <div class="g_id_signin" data-type="standard"></div>
-
+        
 <script>
   function handleCredentialResponse(response) {
-    console.log("Encoded JWT ID token: " + response.credential);
+    console.log("Login successful");
 
-    // You can send this token to your backend OR decode it
-    const user = parseJwt(response.credential);
-    console.log(user);
-  }
+    // mark user as logged in
+    localStorage.setItem("loggedIn", "true");
 
-  function parseJwt(token) {
-    const base64Url = token.split('.')[1];
-    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-    return JSON.parse(window.atob(base64));
+    // scroll to events section
+    document.getElementById("events").scrollIntoView({ behavior: "smooth" });
   }
 </script>
+        
     </div>
     </section>
 
